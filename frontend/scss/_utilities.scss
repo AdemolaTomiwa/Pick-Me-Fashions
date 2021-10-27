@@ -1,0 +1,258 @@
+a {
+   text-decoration: none;
+   color: $black-color;
+}
+
+li {
+   list-style: none;
+}
+
+img {
+   width: 100%;
+}
+
+.line {
+   background-color: $grey-color;
+   width: 100%;
+   height: 1px;
+   margin: 0.5rem 0;
+}
+
+.container {
+   width: 85%;
+   margin: 0 auto;
+   max-width: 1224px;
+   min-height: 80vh;
+}
+
+// Font Size
+h1 {
+   font-size: 2.5rem;
+}
+
+h2 {
+   font-size: 2rem;
+}
+
+h3 {
+   font-size: 1.5rem;
+}
+
+h4 {
+   font-size: 1rem;
+}
+
+h5 {
+   font-size: 0.8rem;
+}
+
+// Transitions
+@mixin easeOut {
+   transition: all ease-out 0.5s;
+}
+
+// Loader
+.loader {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 2rem;
+
+   i {
+      font-size: 4rem;
+      margin-top: 1rem;
+      color: $black-color;
+   }
+}
+
+// Messages
+.error-msg {
+   background-color: $danger-color;
+   color: $white-color;
+   font-weight: bold;
+   font-size: 0.9rem;
+   padding: 0.8rem 1rem;
+   margin-top: 1rem;
+}
+
+.success-msg {
+   background-color: $blue-color;
+   color: $black-color;
+   font-weight: bold;
+   font-size: 0.9rem;
+   padding: 0.8rem 1rem;
+   margin-top: 1rem;
+}
+
+.alert {
+   margin: 1rem 0;
+   background-color: $blue-color;
+   padding: 0.8rem 1rem;
+   font-weight: bold;
+   font-size: 0.8rem;
+
+   a {
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+
+// Buttons
+.back {
+   margin-top: 2rem;
+   a {
+      padding: 0.8rem 1rem;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      background-color: $white-color;
+      color: $black-color;
+      @include easeOut();
+
+      &:hover {
+         background-color: lighten($grey-color, 7%);
+      }
+   }
+}
+
+.btn {
+   padding: 1rem;
+   font-size: 0.7rem;
+   text-transform: uppercase;
+   border: none;
+   outline: none;
+   cursor: pointer;
+
+   &-dark {
+      background-color: $black-color;
+      color: $white-color;
+      @include easeOut();
+
+      &:hover {
+         background-color: lighten($black-color, 10%);
+      }
+   }
+
+   &-primary {
+      background-color: $primary-color;
+      color: $white-color;
+      @include easeOut();
+
+      &:hover {
+         background-color: darken($primary-color, 7%);
+      }
+   }
+
+   &:disabled {
+      background-color: lighten($primary-color, 10%);
+      cursor: not-allowed;
+   }
+}
+
+// Form
+select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   outline: none;
+   border: none;
+}
+
+.select {
+   position: relative;
+   overflow: hidden;
+   border: none;
+
+   select {
+      background-color: lighten($grey-color, 15%);
+      padding: 0.5rem 2rem;
+      padding-right: 3rem;
+      width: 100%;
+      font-weight: lighter;
+      cursor: pointer;
+   }
+
+   i {
+      position: absolute;
+      top: 30%;
+      right: 20%;
+      cursor: pointer;
+      pointer-events: none;
+   }
+}
+
+form {
+   div {
+      margin: 1rem 0;
+
+      label {
+         font-size: 0.8rem;
+         font-weight: bold;
+         display: block;
+      }
+
+      input,
+      textarea {
+         display: block;
+         padding: 0.8rem 1rem;
+         width: 100%;
+         border: none;
+         outline: none;
+         background-color: $grey-color;
+         color: $black-color;
+         font-size: 1rem;
+      }
+   }
+
+   .box {
+      div {
+         display: block;
+         padding: 0.8rem 1rem;
+         width: 100%;
+         border: none;
+         outline: none;
+         background-color: $grey-color;
+         color: $black-color;
+         cursor: not-allowed;
+         font-size: 1rem;
+      }
+   }
+   .checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      label {
+         width: inherit;
+         display: inline-block;
+         margin-left: 1rem;
+         cursor: pointer;
+      }
+      input[type='checkbox'] {
+         width: inherit;
+         display: inline-block;
+         cursor: pointer;
+      }
+   }
+}
+
+.file::-webkit-file-upload-button {
+   visibility: hidden;
+}
+.file::before {
+   display: inline;
+   content: 'Browse';
+   background: lighten($grey-color, 10%);
+   padding: 0.5rem 1rem;
+   outline: none;
+   font-weight: bold;
+   color: $black-color;
+   font-size: 0.8rem;
+   cursor: pointer;
+   @include easeOut();
+}
+.file:hover::before {
+   background-color: darken($white-color, 3%);
+}
