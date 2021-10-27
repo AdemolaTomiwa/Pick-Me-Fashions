@@ -5,9 +5,8 @@
    "description": "An E-Commerce Mern stack app",
    "main": "server.js",
    "scripts": {
-      "start": "node backend/server.js",
-      "server": "nodemon backend/server.js",
-      "build": "cd frontend && npm install && npm run build"
+      "build": "cd frontend && npm install && npm run build",
+      "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
    },
    "author": "Tomiwa Adelae",
    "license": "MIT",
