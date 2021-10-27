@@ -32,9 +32,9 @@ app.use('/api/auth', authRoute);
 app.use('/api/orders', orderRoute);
 
 // Test
-app.get('/', (req, res) => {
-   res.send('Hello world');
-});
+// app.get('/', (req, res) => {
+//    res.send('Hello world');
+// });
 
 // Paypal
 app.get('/api/config/paypal', (req, res) => {

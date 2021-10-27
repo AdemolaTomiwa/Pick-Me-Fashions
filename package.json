@@ -6,7 +6,8 @@
    "main": "server.js",
    "scripts": {
       "start": "node backend/server.js",
-      "server": "nodemon backend/server.js"
+      "server": "nodemon backend/server.js",
+      "build": "cd frontend && npm install && npm run build"
    },
    "author": "Tomiwa Adelae",
    "license": "MIT",
