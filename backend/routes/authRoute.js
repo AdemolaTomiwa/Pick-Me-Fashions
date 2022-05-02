@@ -62,13 +62,4 @@ router.post('/', (req, res) => {
    }
 });
 
-// // Get user data
-// // GET @/api/auth/user
-// // Private
-// router.get('/user', auth, (req, res) => {
-//    User.findById(req.user.id)
-//       .select('-password')
-//       .then((user) => res.status(200).json(user));
-// });
-
 export default router;

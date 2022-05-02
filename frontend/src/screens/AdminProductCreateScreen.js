@@ -48,20 +48,20 @@ class AdminProductCreate extends Component {
       this.setState({ [e.target.name]: e.target.value });
    };
 
-   uploadImage = (e) => {
+   handleFileInputChange = (e) => {
       const file = e.target.files[0];
-      const formData = new FormData();
-      formData.append('image', file);
-      this.setState({ imageLoading: true });
 
-      const config = {
-         headers: {
-            'Content-type': 'multi-part/form-data',
-         },
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+         this.uploadImage(reader.result);
       };
+   };
 
+   uploadImage = (base64EncodedImage) => {
+      this.setState({ imageLoading: true });
       axios
-         .post('/api/uploads', formData, config)
+         .post('/api/uploads', { data: base64EncodedImage })
          .then((res) => {
             this.setState({
                image: res.data,
@@ -70,7 +70,11 @@ class AdminProductCreate extends Component {
             });
          })
          .catch((err) => {
-            this.setState({ image: '', imageErr: true, imageLoading: false });
+            this.setState({
+               image: '',
+               imageErr: true,
+               imageLoading: false,
+            });
          });
    };
 
@@ -160,14 +164,14 @@ class AdminProductCreate extends Component {
                      className="file"
                      id="image"
                      name="image"
-                     onChange={this.uploadImage}
+                     onChange={this.handleFileInputChange}
                   />
                   {imageLoading ? (
                      <Loader />
                   ) : imageErr ? (
                      <p className="image-error">
-                        <i className="fas fa-exclamation-circle"></i> Only
-                        Image!
+                        <i className="fas fa-exclamation-circle"></i>An error
+                        occured!
                      </p>
                   ) : null}
                </div>

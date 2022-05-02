@@ -1,43 +1,24 @@
-import path from 'path';
 import express from 'express';
-import multer from 'multer';
+import cloudinary from '../middleware/cloudinary.js';
+
 const router = express.Router();
 
-const storage = multer.diskStorage({
-   destination(req, file, cb) {
-      cb(null, 'uploads/');
-   },
-   filename(req, file, cb) {
-      cb(
-         null,
-         `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-      );
-   },
-});
+// Login a User
+// POST @/api/auth
+// Public
+router.post('/', async (req, res) => {
+   try {
+      const fileStr = req.body.data;
 
-function checkFileType(file, cb) {
-   const filetypes = /jpg|jpeg|png/;
-   const extname = filetypes.test(
-      path.extname(file.originalname).toLowerCase()
-   );
-   const mimetype = filetypes.test(file.mimetype);
+      const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+         upload_preset: 'birthday_images',
+      });
 
-   if (extname && mimetype) {
-      return cb(null, true);
-   } else {
-      cb('Images only!');
+      res.send(uploadResponse.url);
+   } catch (err) {
+      console.error(err);
+      res.status(500).json({ err: 'Something went wrong' });
    }
-}
-
-const upload = multer({
-   storage,
-   fileFilter: function (req, file, cb) {
-      checkFileType(file, cb);
-   },
-});
-
-router.post('/', upload.single('image'), (req, res) => {
-   res.send(`/${req.file.path}`);
 });
 
 export default router;
